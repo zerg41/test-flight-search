@@ -1,7 +1,13 @@
-import { values } from 'mobx';
+// import { LayoverFilterOption } from 'constants';
 import { types } from 'mobx-state-tree';
 
 const S_SEVEN = 's7';
+
+const filterType = types.union();
+
+// const LayoverFilter = {
+//   ['']
+// }
 
 const FlightInfo = types.model({
   dateStart: types.string,

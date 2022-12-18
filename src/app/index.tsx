@@ -4,7 +4,7 @@ import { values } from 'mobx';
 import { observer } from 'mobx-react-lite';
 import { store } from 'store';
 // components
-import { Copyright } from 'components';
+import { Copyright, LayoverFilter, SortSwitch } from 'components';
 // styles
 import airplaneImage from 'assets/images/icons8-airplane-91.png';
 import s from './styles.module.css';
@@ -16,10 +16,10 @@ let App: FC = observer(() => {
         <img className={s.logo} src={airplaneImage} alt='logo' width={60} height={60} />
       </header>
       <main className={s.main}>
-        <div>Filter</div>
-        <button onClick={() => store.sortByPrice()}>sort by price</button>
-        <button onClick={() => store.sortByDuration()}>sort by duration</button>
+        <LayoverFilter />
+
         <div>
+          <SortSwitch />
           {values(store.tickets).map((ticket) => (
             <p key={ticket.id}>{ticket.price}</p>
           ))}
