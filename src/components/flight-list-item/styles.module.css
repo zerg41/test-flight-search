@@ -1,0 +1,35 @@
+.flight {
+  display: flex;
+  flex-direction: column;
+  min-height: 185px;
+  box-sizing: border-box;
+  width: 440px;
+  border-radius: 4px;
+  padding: 20px;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.04), 0px 2px 6px rgba(0, 0, 0, 0.04),
+    0px 0px 1px rgba(0, 0, 0, 0.04);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 40px;
+}
+
+.price {
+  color: var(--primary-color);
+  font-size: 22px;
+  line-height: 120%;
+  font-weight: 600;
+}
+
+.airline {
+  height: 100%;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}

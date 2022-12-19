@@ -5,7 +5,7 @@ import { store } from 'store';
 // styles
 import s from './styles.module.css';
 // utils
-import { ELayoverFilterOption } from 'utils/constants';
+import { ELayoverOption } from 'utils/constants';
 
 export const LayoverFilter: FC = observer(() => {
   function handleSelectAllFilters() {
@@ -25,7 +25,7 @@ export const LayoverFilter: FC = observer(() => {
           type='checkbox'
           id='all-flights'
           className={s.input}
-          value={ELayoverFilterOption.ALL}
+          value={ELayoverOption.ALL}
           onChange={handleSelectAllFilters}
           checked={store.isCheckedAll}
         />
@@ -33,19 +33,19 @@ export const LayoverFilter: FC = observer(() => {
           Все
         </label>
       </div>
-      {store.filters.map((filter) => {
+      {store.layoverFilterOptions.map((option) => {
         return (
-          <div key={filter.id} className={s.option}>
+          <div key={option.id} className={s.option}>
             <input
               type='checkbox'
-              id={filter.id}
+              id={option.id}
               className={s.input}
-              value={filter.value}
-              onChange={filter.setFilter}
-              checked={filter.isChecked}
+              value={option.value}
+              onChange={option.setFilter}
+              checked={option.isChecked}
             />
-            <label htmlFor={filter.id} className={s.label}>
-              {filter.title}
+            <label htmlFor={option.id} className={s.label}>
+              {option.title}
             </label>
           </div>
         );

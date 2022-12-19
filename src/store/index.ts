@@ -1,7 +1,5 @@
-import { ELayoverFilterOption } from 'utils/constants';
 import { Instance, types } from 'mobx-state-tree';
-
-const S_SEVEN = 's7';
+import { EAirline, ELayoverOption } from 'utils/constants';
 
 const FlightInfo = types.model({
   dateStart: types.string,
@@ -18,7 +16,7 @@ const Flight = types.model({
   return: FlightInfo,
 });
 
-const LayoverFilter = types
+const LayoverFilterOption = types
   .model({
     id: types.string,
     title: types.string,
@@ -34,11 +32,13 @@ const LayoverFilter = types
 const RootStore = types
   .model({
     flights: types.array(Flight),
-    filters: types.array(LayoverFilter),
+    layoverFilterOptions: types.array(LayoverFilterOption),
   })
   .views((self) => ({
     get filteredFlights() {
-      let selectedFilterOptions = self.filters.map((option) => option.isChecked && option.value);
+      let selectedFilterOptions = self.layoverFilterOptions.map(
+        (option) => option.isChecked && option.value
+      );
 
       return self.flights.filter((flight) =>
         selectedFilterOptions.includes(flight.depart.layovers.length)
@@ -46,7 +46,8 @@ const RootStore = types
     },
     get isCheckedAll() {
       return (
-        self.filters.filter((option) => option.isChecked === true).length === self.filters.length
+        self.layoverFilterOptions.filter((option) => option.isChecked === true).length ===
+        self.layoverFilterOptions.length
       );
     },
   }))
@@ -60,10 +61,14 @@ const RootStore = types
       );
     },
     setAllFilters() {
-      self.filters.replace(self.filters.map((option) => ({ ...option, isChecked: true })));
+      self.layoverFilterOptions.replace(
+        self.layoverFilterOptions.map((option) => ({ ...option, isChecked: true }))
+      );
     },
     resetAllFilters() {
-      self.filters.replace(self.filters.map((option) => ({ ...option, isChecked: false })));
+      self.layoverFilterOptions.replace(
+        self.layoverFilterOptions.map((option) => ({ ...option, isChecked: false }))
+      );
     },
   }));
 
@@ -71,35 +76,35 @@ export const store = RootStore.create({
   flights: [
     {
       id: 0,
-      airline: S_SEVEN,
+      airline: EAirline.S_7,
       price: 13000,
       depart: { dateStart: '10:45', dateEnd: '08:00', duration: 1275, layovers: ['HKG', 'JNB'] },
       return: { dateStart: '11:20', dateEnd: '00:50', duration: 810, layovers: ['HKG'] },
     },
     {
       id: 1,
-      airline: S_SEVEN,
+      airline: EAirline.S_7,
       price: 13400,
       depart: { dateStart: '10:45', dateEnd: '07:00', duration: 1215, layovers: ['HKG', 'JNB'] },
       return: { dateStart: '11:20', dateEnd: '00:50', duration: 810, layovers: ['HKG'] },
     },
     {
       id: 2,
-      airline: S_SEVEN,
+      airline: EAirline.S_7,
       price: 13100,
       depart: { dateStart: '10:45', dateEnd: '08:00', duration: 1275, layovers: ['HKG', 'JNB'] },
       return: { dateStart: '11:20', dateEnd: '00:40', duration: 800, layovers: ['HKG'] },
     },
     {
       id: 3,
-      airline: S_SEVEN,
+      airline: EAirline.S_7,
       price: 13600,
       depart: { dateStart: '10:45', dateEnd: '07:00', duration: 1215, layovers: [] },
       return: { dateStart: '11:20', dateEnd: '00:40', duration: 800, layovers: [] },
     },
     {
       id: 4,
-      airline: S_SEVEN,
+      airline: EAirline.S_7,
       price: 10600,
       depart: {
         dateStart: '10:45',
@@ -110,29 +115,29 @@ export const store = RootStore.create({
       return: { dateStart: '11:20', dateEnd: '00:40', duration: 800, layovers: ['HKG', 'JNB'] },
     },
   ],
-  filters: [
+  layoverFilterOptions: [
     {
       id: 'no-layovers',
       title: 'Без пересадок',
-      value: ELayoverFilterOption.NO_LAYOVERS,
+      value: ELayoverOption.NO_LAYOVERS,
       isChecked: true,
     },
     {
       id: 'one-layover',
       title: '1 пересадка',
-      value: ELayoverFilterOption.ONE_LAYOVER,
+      value: ELayoverOption.ONE_LAYOVER,
       isChecked: true,
     },
     {
       id: 'two-layovers',
       title: '2 пересадки',
-      value: ELayoverFilterOption.TWO_LAYOVERS,
+      value: ELayoverOption.TWO_LAYOVERS,
       isChecked: true,
     },
     {
       id: 'three-layovers',
       title: '3 пересадки',
-      value: ELayoverFilterOption.THREE_LAYOVERS,
+      value: ELayoverOption.THREE_LAYOVERS,
       isChecked: true,
     },
   ],

@@ -1,4 +1,4 @@
-export enum ELayoverFilterOption {
+export enum ELayoverOption {
   NO_LAYOVERS = -1,
   ALL = 0,
   ONE_LAYOVER = 1,
@@ -9,4 +9,8 @@ export enum ELayoverFilterOption {
 export enum ESortOption {
   PRICE = 'price',
   DURATION = 'duration',
+}
+
+export enum EAirline {
+  S_7 = 's7',
 }

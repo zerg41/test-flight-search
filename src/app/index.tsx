@@ -1,9 +1,8 @@
 import React, { FC } from 'react';
 // store
 import { observer } from 'mobx-react-lite';
-import { store } from 'store';
 // components
-import { Copyright, LayoverFilter, SortSwitch, FlightItem } from 'components';
+import { Copyright, LayoverFilter, SortSwitch, FlightList } from 'components';
 // styles
 import airplaneImage from 'assets/images/icons8-airplane-91.png';
 import s from './styles.module.css';
@@ -16,13 +15,10 @@ let App: FC = observer(() => {
       </header>
       <main className={s.main}>
         <LayoverFilter />
-
-        <div>
+        <section className={s.flights}>
           <SortSwitch />
-          {store.filteredFlights.map((flight) => {
-            return <FlightItem key={flight.id} flight={flight} />;
-          })}
-        </div>
+          <FlightList />
+        </section>
       </main>
       <footer className={s.footer}>
         <Copyright />
