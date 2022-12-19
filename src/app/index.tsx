@@ -1,10 +1,9 @@
 import React, { FC } from 'react';
 // store
-import { values } from 'mobx';
 import { observer } from 'mobx-react-lite';
 import { store } from 'store';
 // components
-import { Copyright, LayoverFilter, SortSwitch } from 'components';
+import { Copyright, LayoverFilter, SortSwitch, FlightItem } from 'components';
 // styles
 import airplaneImage from 'assets/images/icons8-airplane-91.png';
 import s from './styles.module.css';
@@ -20,9 +19,9 @@ let App: FC = observer(() => {
 
         <div>
           <SortSwitch />
-          {values(store.tickets).map((ticket) => (
-            <p key={ticket.id}>{ticket.price}</p>
-          ))}
+          {store.filteredFlights.map((flight) => {
+            return <FlightItem key={flight.id} flight={flight} />;
+          })}
         </div>
       </main>
       <footer className={s.footer}>

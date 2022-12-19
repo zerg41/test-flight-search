@@ -1,21 +1,16 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 // store
 import { store } from 'store';
 // styles
 import s from './styles.module.css';
-
-enum ESortOption {
-  PRICE = 'price',
-  DURATION = 'duration',
-}
+// utils
+import { ESortOption } from 'utils/constants';
 
 export const SortSwitch: FC = () => {
   let [selectedSortOption, setSelectedSortOption] = useState<ESortOption>(ESortOption.PRICE);
 
-  function handleSortOptionChange(evt: React.FormEvent<HTMLInputElement>) {
-    let sortOption = evt.currentTarget.value as ESortOption;
-
-    switch (sortOption) {
+  useEffect(() => {
+    switch (selectedSortOption) {
       case ESortOption.PRICE:
         store.sortByPrice();
         break;
@@ -23,36 +18,39 @@ export const SortSwitch: FC = () => {
         store.sortByDuration();
         break;
     }
+  }, [selectedSortOption]);
 
+  function handleSortOptionChange(evt: React.FormEvent<HTMLInputElement>) {
+    let sortOption = evt.currentTarget.value as ESortOption;
     setSelectedSortOption(sortOption);
   }
 
   return (
-    <fieldset name='sort' role='radiogroup' className={s.group}>
+    <div role='radiogroup' className={s.switch}>
       <label className={`${s.label} ${selectedSortOption === ESortOption.PRICE ? s.checked : ''}`}>
-        Самый дешевый
+        {'Самый дешевый'.toUpperCase()}
         <input
           type='radio'
           name='sort'
           className='visually-hidden'
           value={ESortOption.PRICE}
-          checked={selectedSortOption === ESortOption.PRICE}
+          defaultChecked={selectedSortOption === ESortOption.PRICE}
           onClick={handleSortOptionChange}
         />
       </label>
       <label
         className={`${s.label} ${selectedSortOption === ESortOption.DURATION ? s.checked : ''}`}
       >
-        Самый быстрый
+        {'Самый быстрый'.toUpperCase()}
         <input
           type='radio'
           name='sort'
           className='visually-hidden'
           value={ESortOption.DURATION}
-          checked={selectedSortOption === ESortOption.DURATION}
+          defaultChecked={selectedSortOption === ESortOption.DURATION}
           onClick={handleSortOptionChange}
         />
       </label>
-    </fieldset>
+    </div>
   );
 };

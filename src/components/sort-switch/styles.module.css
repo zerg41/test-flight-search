@@ -1,4 +1,4 @@
-.group {
+.switch {
   display: flex;
   padding: 0;
   margin: 0;
@@ -14,9 +14,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10px;
-  width: 200px;
+  padding: 14px;
+  width: 220px;
   cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
 }
 
 .checked {
