@@ -29,7 +29,25 @@
 }
 
 .details {
+  margin-top: 10px;
   display: flex;
   flex-direction: column;
   row-gap: 20px;
+}
+
+.depart,
+.return {
+  display: flex;
+  justify-content: space-between;
+}
+
+.detail {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-size: 12px;
+  color: #c2c2c2;
+  text-transform: uppercase;
 }

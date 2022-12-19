@@ -29,8 +29,34 @@ export const FlightListItem: FC<FlightItemProps> = observer(({ flight }) => {
         </span>
       </header>
       <div className={s.details}>
-        <div className={s.depart}></div>
-        <div className={s.return}></div>
+        <div className={s.depart}>
+          <div className={s.detail}>
+            <span className={s.title}>{`MOW-MOW`}</span>
+            <span className={s.value}>{`${flight.depart.dateStart}-${flight.depart.dateEnd}`}</span>
+          </div>
+          <div className={s.detail}>
+            <span className={s.title}>В ПУТИ</span>
+            <span className={s.value}>{`${flight.depart.dateStart}-${flight.depart.dateEnd}`}</span>
+          </div>
+          <div className={s.detail}>
+            <span className={s.title}>{`${flight.depart.layovers.length} пересадки`}</span>
+            <span className={s.value}>{flight.depart.layovers.map((layover) => layover)}</span>
+          </div>
+        </div>
+        <div className={s.return}>
+          <div className={s.detail}>
+            <span className={s.title}>{`MOW-MOW`}</span>
+            <span className={s.value}>{`${flight.depart.dateStart}-${flight.depart.dateEnd}`}</span>
+          </div>
+          <div className={s.detail}>
+            <span className={s.title}>В ПУТИ</span>
+            <span className={s.value}>{`${flight.depart.dateStart}-${flight.depart.dateEnd}`}</span>
+          </div>
+          <div className={s.detail}>
+            <span className={s.title}>{`${flight.depart.layovers.length} пересадки`}</span>
+            <span className={s.value}>{flight.depart.layovers.map((layover) => layover)}</span>
+          </div>
+        </div>
       </div>
     </li>
   );
