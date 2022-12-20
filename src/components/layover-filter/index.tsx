@@ -13,13 +13,12 @@ export const LayoverFilter: FC = observer(() => {
       store.resetAllFilters();
       return;
     }
-
     store.setAllFilters();
   }
 
   return (
     <div className={s.filter} role='menu'>
-      <h3 className={s.title}>{'Количество пересадок'.toUpperCase()}</h3>
+      <h3 className={s.title}>Количество пересадок</h3>
       <div className={s.option}>
         <input
           type='checkbox'

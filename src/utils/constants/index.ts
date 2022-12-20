@@ -1,6 +1,6 @@
 export enum ELayoverOption {
-  NO_LAYOVERS = -1,
-  ALL = 0,
+  ALL = -1,
+  NO_LAYOVERS = 0,
   ONE_LAYOVER = 1,
   TWO_LAYOVERS = 2,
   THREE_LAYOVERS = 3,

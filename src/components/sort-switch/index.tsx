@@ -28,7 +28,7 @@ export const SortSwitch: FC = () => {
   return (
     <div role='radiogroup' className={s.switch}>
       <label className={`${s.label} ${selectedSortOption === ESortOption.PRICE ? s.checked : ''}`}>
-        {'Самый дешевый'.toUpperCase()}
+        Самый дешевый
         <input
           type='radio'
           name='sort'
@@ -41,7 +41,7 @@ export const SortSwitch: FC = () => {
       <label
         className={`${s.label} ${selectedSortOption === ESortOption.DURATION ? s.checked : ''}`}
       >
-        {'Самый быстрый'.toUpperCase()}
+        Самый быстрый
         <input
           type='radio'
           name='sort'

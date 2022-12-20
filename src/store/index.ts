@@ -1,10 +1,13 @@
 import { Instance, types } from 'mobx-state-tree';
+// utils
+import { getDuration } from 'utils/functions';
 import { EAirline, ELayoverOption } from 'utils/constants';
 
 const FlightInfo = types.model({
-  dateStart: types.string,
-  dateEnd: types.string,
-  duration: types.number,
+  departurePoint: types.string,
+  arrivalPoint: types.string,
+  dateStart: types.Date,
+  dateEnd: types.Date,
   layovers: types.array(types.string),
 });
 
@@ -41,7 +44,7 @@ const RootStore = types
       );
 
       return self.flights.filter((flight) =>
-        selectedFilterOptions.includes(flight.depart.layovers.length)
+        selectedFilterOptions.includes(Number(flight.depart.layovers.length))
       );
     },
     get isCheckedAll() {
@@ -56,9 +59,16 @@ const RootStore = types
       self.flights.sort((a, b) => a.price - b.price);
     },
     sortByDuration() {
-      self.flights.sort(
-        (a, b) => a.depart.duration + a.return.duration - (b.depart.duration + b.return.duration)
-      );
+      self.flights.sort((a, b) => {
+        let totalDurationA =
+          getDuration(a.depart.dateStart, a.depart.dateEnd) +
+          getDuration(a.return.dateStart, a.return.dateEnd);
+        let totalDurationB =
+          getDuration(b.depart.dateStart, b.depart.dateEnd) +
+          getDuration(b.return.dateStart, b.return.dateEnd);
+
+        return totalDurationA - totalDurationB;
+      });
     },
     setAllFilters() {
       self.layoverFilterOptions.replace(
@@ -78,41 +88,96 @@ export const store = RootStore.create({
       id: 0,
       airline: EAirline.S_7,
       price: 13000,
-      depart: { dateStart: '10:45', dateEnd: '08:00', duration: 1275, layovers: ['HKG', 'JNB'] },
-      return: { dateStart: '11:20', dateEnd: '00:50', duration: 810, layovers: ['HKG'] },
+      depart: {
+        departurePoint: 'LED',
+        arrivalPoint: 'MOW',
+        dateStart: new Date('2022-02-12T23:50:00'),
+        dateEnd: new Date('2022-02-13T08:00:00'),
+        layovers: ['HKG', 'JNB'],
+      },
+      return: {
+        departurePoint: 'MOW',
+        arrivalPoint: 'LED',
+        dateStart: new Date('2022-02-25T11:30:00'),
+        dateEnd: new Date('2022-02-25T15:00:00'),
+        layovers: ['HKG'],
+      },
     },
     {
       id: 1,
       airline: EAirline.S_7,
       price: 13400,
-      depart: { dateStart: '10:45', dateEnd: '07:00', duration: 1215, layovers: ['HKG', 'JNB'] },
-      return: { dateStart: '11:20', dateEnd: '00:50', duration: 810, layovers: ['HKG'] },
+      depart: {
+        departurePoint: 'LED',
+        arrivalPoint: 'MOW',
+        dateStart: new Date('2022-02-12T19:30:00'),
+        dateEnd: new Date('2022-02-12T22:20:00'),
+        layovers: ['HKG'],
+      },
+      return: {
+        departurePoint: 'MOW',
+        arrivalPoint: 'LED',
+        dateStart: new Date('2022-02-25T11:30:00'),
+        dateEnd: new Date('2022-02-25T14:47:00'),
+        layovers: ['HKG'],
+      },
     },
     {
       id: 2,
       airline: EAirline.S_7,
       price: 13100,
-      depart: { dateStart: '10:45', dateEnd: '08:00', duration: 1275, layovers: ['HKG', 'JNB'] },
-      return: { dateStart: '11:20', dateEnd: '00:40', duration: 800, layovers: ['HKG'] },
+      depart: {
+        departurePoint: 'LED',
+        arrivalPoint: 'MOW',
+        dateStart: new Date('2022-02-12T23:50:00'),
+        dateEnd: new Date('2022-02-14T08:00:00'),
+        layovers: ['HKG', 'JNB'],
+      },
+      return: {
+        departurePoint: 'MOW',
+        arrivalPoint: 'LED',
+        dateStart: new Date('2022-02-25T11:30:00'),
+        dateEnd: new Date('2022-02-25T15:00:00'),
+        layovers: ['HKG'],
+      },
     },
     {
       id: 3,
       airline: EAirline.S_7,
       price: 13600,
-      depart: { dateStart: '10:45', dateEnd: '07:00', duration: 1215, layovers: [] },
-      return: { dateStart: '11:20', dateEnd: '00:40', duration: 800, layovers: [] },
+      depart: {
+        departurePoint: 'LED',
+        arrivalPoint: 'MOW',
+        dateStart: new Date('2022-02-12T18:00:00'),
+        dateEnd: new Date('2022-02-12T19:15:00'),
+        layovers: [],
+      },
+      return: {
+        departurePoint: 'MOW',
+        arrivalPoint: 'LED',
+        dateStart: new Date('2022-02-25T11:30:00'),
+        dateEnd: new Date('2022-02-25T12:47:00'),
+        layovers: [],
+      },
     },
     {
       id: 4,
       airline: EAirline.S_7,
       price: 10600,
       depart: {
-        dateStart: '10:45',
-        dateEnd: '17:00',
-        duration: 1815,
+        departurePoint: 'LED',
+        arrivalPoint: 'MOW',
+        dateStart: new Date('2022-02-12T23:20:00'),
+        dateEnd: new Date('2022-02-14T08:15:00'),
         layovers: ['HKG', 'JNB', 'HKG'],
       },
-      return: { dateStart: '11:20', dateEnd: '00:40', duration: 800, layovers: ['HKG', 'JNB'] },
+      return: {
+        departurePoint: 'MOW',
+        arrivalPoint: 'LED',
+        dateStart: new Date('2022-02-25T12:30:00'),
+        dateEnd: new Date('2022-02-27T15:00:00'),
+        layovers: ['HKG', 'JNB'],
+      },
     },
   ],
   layoverFilterOptions: [

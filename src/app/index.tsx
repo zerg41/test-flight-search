@@ -4,8 +4,8 @@ import { observer } from 'mobx-react-lite';
 // components
 import { Copyright, LayoverFilter, SortSwitch, FlightList } from 'components';
 // styles
-import airplaneImage from 'assets/images/icons8-airplane-91.png';
 import s from './styles.module.css';
+import airplaneImage from 'assets/images/icons8-airplane-91.png';
 
 let App: FC = observer(() => {
   return (
