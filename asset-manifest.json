@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/test-flight-search/static/css/main.afa33937.css",
+    "main.css": "/test-flight-search/static/css/main.207ffaa7.css",
     "main.js": "/test-flight-search/static/js/main.4de95916.js",
     "static/media/S7-logo.png": "/test-flight-search/static/media/S7-logo.5a506026c8b0c2fa765d.png",
     "index.html": "/test-flight-search/index.html",
-    "main.afa33937.css.map": "/test-flight-search/static/css/main.afa33937.css.map",
+    "main.207ffaa7.css.map": "/test-flight-search/static/css/main.207ffaa7.css.map",
     "main.4de95916.js.map": "/test-flight-search/static/js/main.4de95916.js.map"
   },
   "entrypoints": [
-    "static/css/main.afa33937.css",
+    "static/css/main.207ffaa7.css",
     "static/js/main.4de95916.js"
   ]
 }
