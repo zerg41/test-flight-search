@@ -1,0 +1,44 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 40px;
+  width: 100%;
+}
+
+.logo {
+  border-radius: 50%;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.04), 0px 2px 6px rgba(0, 0, 0, 0.04),
+    0px 0px 1px rgba(0, 0, 0, 0.04);
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  flex-grow: 1;
+  padding-top: 40px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.flights {
+  display: flex;
+  flex-direction: column;
+  width: calc(440px + 12px + 14px);
+  margin-left: 10px;
+  height: 100%;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0;
+  font-size: 14px;
+}

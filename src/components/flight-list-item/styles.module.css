@@ -1,0 +1,62 @@
+.flight {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 440px;
+  height: 185px;
+  border-radius: 4px;
+  padding: 20px;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.04), 0px 2px 6px rgba(0, 0, 0, 0.04),
+    0px 0px 1px rgba(0, 0, 0, 0.04);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 40px;
+}
+
+.price {
+  color: var(--primary-color);
+  font-size: 22px;
+  line-height: 120%;
+  font-weight: 600;
+}
+
+.airline {
+  height: 100%;
+}
+
+.details {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+
+.depart,
+.return {
+  display: flex;
+  justify-content: space-between;
+}
+
+.time,
+.duration,
+.layovers {
+  display: flex;
+  flex-direction: column;
+  width: 120px;
+}
+
+.title {
+  font-size: 12px;
+  color: #c2c2c2;
+  text-transform: uppercase;
+}
+
+.value {
+  margin-top: 4px;
+  font-size: 14px;
+  font-weight: 500;
+}

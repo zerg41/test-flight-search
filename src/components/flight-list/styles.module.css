@@ -1,0 +1,21 @@
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+  overflow-y: auto;
+}
+
+.list::-webkit-scrollbar {
+  scroll-behavior: smooth;
+  background: #ced8de40;
+  border-radius: 4px;
+  width: 6px;
+}
+
+.list::-webkit-scrollbar-thumb {
+  background: #ced8de;
+  border-radius: 4px;
+}
