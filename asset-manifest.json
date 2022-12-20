@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/zerg41/test-flight-search/static/css/main.afa33937.css",
+    "main.js": "/zerg41/test-flight-search/static/js/main.fef2288f.js",
+    "static/media/S7-logo.png": "/zerg41/test-flight-search/static/media/S7-logo.5a506026c8b0c2fa765d.png",
+    "index.html": "/zerg41/test-flight-search/index.html",
+    "main.afa33937.css.map": "/zerg41/test-flight-search/static/css/main.afa33937.css.map",
+    "main.fef2288f.js.map": "/zerg41/test-flight-search/static/js/main.fef2288f.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.afa33937.css",
+    "static/js/main.fef2288f.js"
+  ]
+}
